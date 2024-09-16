@@ -9,7 +9,7 @@
 #' @param n_subject The total number of subjects in the study.
 #' @param preprocess If \code{TRUE}, the concatenated group-level connectivity data will be preprocessed. Defaults to \code{TRUE}.
 #' @param penalty_S The option for the penalization function for the sparsity regularization for the connectivity traits. 
-#' Users can choose "NULL", "L1", or "SCAD". Defaults to "L1". 
+#' Users can choose "NULL", "L1", or "SCAD". Defaults to "SCAD". 
 #' @param phi A tuning parameter for the element-wise penalty on \code{S}. Defaults to 2.
 #' @param rho A proportional tuning parameter ranging from 0 to 1 for the adaptive selection method to determine the number of ranks 
 #' for modeling each connectivity trait. The value of \code{rho} represents the closeness of the connectivity traits estimated with and 
@@ -20,7 +20,7 @@
 #' @param lambda A numeric tuning parameter for the temporal smooth lasso penalty on \code{A}. Defaults to 0.1.
 #' @param maxIteration The maximum number of iterations. Defaults to 100.
 #' @param speed_up If \code{FALSE}, use the Node-rotation algorithm for learning dyna-LOCUS. If \code{TRUE}, use the Alternative algorithm to 
-#' further speed up the computation for learning dyna-LOCUS. Defaults to \code{FALSE}.
+#' further speed up the computation for learning dyna-LOCUS. Defaults to \code{TRUE}.
 #' @param espli1 A number describing the tolerance for change on \code{A}.
 #' @param espli2 A number describing the tolerance for change on \code{S}.
 #' @param demean If \code{TRUE}, demean each column of the group-level connectivity matrix \code{Y}. Defaults to \code{TRUE}.
@@ -34,8 +34,8 @@
 #' @import MASS
 
 dynaLOCUS = function(Y, q, V, n_subject, 
-                     preprocess = TRUE, penalty_S = "L1", phi = 2, rho = 0.9, penalty_A = TRUE, lambda = 0.1,
-                     maxIteration = 100, speed_up = FALSE, 
+                     preprocess = TRUE, penalty_S = "SCAD", phi = 2, rho = 0.9, penalty_A = TRUE, lambda = 0.1,
+                     maxIteration = 100, speed_up = TRUE, 
                      espli1 = 0.01, espli2 = 0.05, demean = TRUE, silent = TRUE){
   # demean Y 
   if(demean){

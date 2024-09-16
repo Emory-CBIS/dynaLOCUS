@@ -8,7 +8,7 @@
 #' @param n_subject The total number of subjects in the study.
 #' @param preprocess If \code{TRUE}, the concatenated group-level connectivity data will be preprocessed. Defaults to \code{TRUE}.
 #' @param penalty The option for the penalization function for the sparsity regularization for the connectivity traits. 
-#' The users can choose "NULL"","L1", or "SCAD". Defaults to "L1". 
+#' The users can choose "NULL"","L1", or "SCAD". Defaults to "SCAD". 
 #' @param phi_grid_search Grid search candidates of tuning parameter \code{phi} for penalty on connectivity traits. Defaults to \code{seq(1, 2, 0.2)}. 
 #' @param rho_grid_search Grid search candidates of tuning parameter for the adaptive selection method to determine the number of ranks 
 #' for modeling each connectivity trait. Defaults to \code{c(0.9)}. 
@@ -25,7 +25,7 @@
 #' @export
 
 bic_selection = function(Y, q, V, n_subject,
-                         preprocess = TRUE, penalty = "L1", phi_grid_search = seq(1, 2, 0.2), rho_grid_search = c(0.9), 
+                         preprocess = TRUE, penalty = "SCAD", phi_grid_search = seq(1, 2, 0.2), rho_grid_search = c(0.9), 
                          maxIteration = 100, espli1 = 0.01, espli2 = 0.05, demean = TRUE, save_output = FALSE){
   
   # demean the data if specified
